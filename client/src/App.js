@@ -1,45 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect } from 'react';
+import Customer from './Layouts/Customer';
+
+
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  NavLink,
+} from 'react-router-dom'
 
 function App() {
 
-
-  const getData = async () => {
-    try {
-
-      const res = await fetch('/Home')
-      const data = await res.json();
-
-      console.log(data);
-
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    getData();
-  }, [])
-  
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <Customer /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path='*' element={<Customer />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
