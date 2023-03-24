@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-const ITEM_HEIGHT = 48;
+const ITEM_HEIGHT = 50;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
   PaperProps: {
@@ -39,7 +39,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MultipleSelect() {
+export default function MultipleSelect({setSelectedService}) {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
@@ -47,6 +47,7 @@ export default function MultipleSelect() {
     const {
       target: { value },
     } = event;
+    setSelectedService(value)
     setPersonName(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
@@ -55,15 +56,16 @@ export default function MultipleSelect() {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300, height:50 }}>
-        <InputLabel id="demo-multiple-name-label">Services</InputLabel>
+      <FormControl sx={{ m: 1, width: 300}}>
+        {/* <InputLabel id="demo-multiple-name-label">Services</InputLabel> */}
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           value={personName}
           onChange={handleChange}
-          input={<OutlinedInput label="Service" />}
+          input={<OutlinedInput label="Service" notched={false}/>}
           MenuProps={MenuProps}
+          size='small'
         >
           {names.map((name) => (
             <MenuItem

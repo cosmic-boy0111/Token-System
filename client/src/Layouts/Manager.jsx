@@ -34,8 +34,11 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom'
-import WaitingRoom from '../Components/Customer/WaitingRoom/WaitingRoom';
-import Timeline from '../Components/Customer/CustomerTimeline/Timeline';
+
+import Services from '../Components/Manager/CreateServices/Services';
+
+import CountertopsIcon from '@mui/icons-material/Countertops';
+
 
 const drawerWidth = 240;
 
@@ -88,7 +91,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function Customer() {
+export default function Manager() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -103,15 +106,15 @@ export default function Customer() {
 
   const navList = [
     {
-      name : 'Generate Token',
-      icon : <TokenRoundedIcon />,
+      name : 'Create Services',
+      icon : <CountertopsIcon />,
       path : '/'
     },
-    {
-      name : 'Waiting Room',
-      icon : <TvRoundedIcon />,
-      path : '/waiting-room'
-    }
+    // {
+    //   name : 'Waiting Room',
+    //   icon : <TvRoundedIcon />,
+    //   path : '/waiting-room'
+    // }
     
   ]
 
@@ -184,10 +187,12 @@ export default function Customer() {
             </ListItem>
             }
           {navList.map((ele, index) => (
-            <NavLink to={ele.path} style={{
+            <NavLink to={ele.path}
+            style={({ isActive }) => ({
               textDecoration:'none',
-              color:'black'
-            }}>
+              color:'black',
+            })}
+            >
 
             <ListItem key={ele.name} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
@@ -237,10 +242,10 @@ export default function Customer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Routes>
-          <Route exact path='/' element={<Token />} />
+          {/* <Route exact path='/' element={<Token />} />
           <Route exact path='/waiting-room' element={<WaitingRoom />} />
-          <Route exact path='/customer-timeline' element={<Timeline />} />
-
+          <Route exact path='/customer-timeline' element={<Timeline />} /> */}
+            <Route exact path='/' element={ <Services /> } />
         </Routes>
 
       </Box>

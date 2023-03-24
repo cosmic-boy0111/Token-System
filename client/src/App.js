@@ -10,6 +10,9 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom'
+import Manager from './Layouts/Manager';
+import Login from './Layouts/Login';
+import Register from './Layouts/Register';
 
 function App() {
 
@@ -18,7 +21,10 @@ function App() {
       {/* <Customer /> */}
       <BrowserRouter>
         <Routes>
-          <Route path='*' element={<Customer />} />
+          {/* <Route exact path='*' element={<Customer />} /> */}
+          <Route exact path='*' element={<Manager />} />
+          <Route exact path='/login' element={<Login />} />
+          <Route exact path='/register' element={<Register />} />
         </Routes>
       </BrowserRouter>
     </>
